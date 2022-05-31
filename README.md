@@ -48,6 +48,23 @@ If the control input changes to AB = 10, then all the gates are restricted excep
  
 ### Procedure
 /* write all the steps invloved */
+Step 1:
+Module Declaration. module is a keywords defined in Verilog .
+
+Step 2:
+Input-Output Delecaration.
+
+Multiplexer has four inputs (I0,I1,I2,I3) and two select lines(S0,S1).
+
+Demultiplexer has single input(I) and two select lines(S0,S1).
+
+Step 3:
+In multiplexer ,we use both AND logic and OR logic inorder to obtain the result.
+
+In demultiplexer , only AND gates are being used.
+
+Step 4:
+Ending module. endmodule is a keywords defined in Verilog.
 
 
 
@@ -57,14 +74,45 @@ Program for flipflops  and verify its truth table in quartus using Verilog progr
 Developed by: 
 RegisterNumber:  
 */
+```
+MULTIPLEXER :
+module muxf(I0,I1,I2,I3,S0,S1,Y);
+input I0,I1,I2,I3,S0,S1;
+output Y;
+wire P,Q,R,S,S0C,S1C;
+not (S0C,S0);
+not (S1C,S1);
+and (P,S0C,S1C,I0);
+and (Q,S0C,S1,I1);
+and (R,S0,S1C,I2);
+and (S,S0,S1,I3);
+or (Y,P,Q,R,S);
+endmodule 
 
+DEMULTIPLEXER :
+module dmuxf(Y0,Y1,Y2,Y3,S0,S1,I);
+input S0,S1,I;
+output Y0,Y1,Y2,Y3;
+wire S0C,S1C;
+not (S0C,S0);
+not (S1C,S1);
+and (Y0,S0C,S1C,I);
+and (Y1,S0C,S1,I);
+and (Y2,S0,S1C,I);
+and (Y3,S0,S1,I);
+endmodule 
+```
 
 
 
 
 
 ### RTL LOGIC  
+MULTIPLEXER 
+![output](rtl1.png.jpg)
 
+DEMULTIPLEXER 
+![output](rtl2.png.jpg)
 
 
 
@@ -73,12 +121,20 @@ RegisterNumber:
 
 
 ### TIMING DIGRAMS  
+MULTIPLEXER
+![output](t.png.jpg)
+![output](r.png.jpg)
 
+DEMULTIPLEXER
+![output](j.png.jpg)
+![output](e.png.jpg)
 
 
 
 
 ### TRUTH TABLE 
+![output](truthtable1.jpg)
+![output](truthtable2.jpg)
 
 
 
@@ -86,3 +142,4 @@ RegisterNumber:
 
 
 ### RESULTS 
+Implementation of 4 X1 multiplexer and 1X4 de multiplexer using verilog Program is done successfully.
